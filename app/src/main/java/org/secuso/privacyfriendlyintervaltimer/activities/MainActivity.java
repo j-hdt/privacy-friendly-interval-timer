@@ -48,9 +48,9 @@ public class MainActivity extends BaseActivity {
     // CONFIGURE TIMER VARIABLES HERE
     // Max and min values for the workout and rest timer as well as the sets
     private int workoutMaxTime = 300; // 5 min
-    private int workoutMinTime = 10; // 10 sec
+    private int workoutMinTime = 5; // 5 sec
     private int restMaxTime = 300; // 5 min
-    private int restMinTime = 10; // 10 sec
+    private int restMinTime = 5; // 5 sec
     private int maxSets = 16;
     private int minSets = 1;
 
@@ -74,7 +74,7 @@ public class MainActivity extends BaseActivity {
     private Switch blockPeriodizationSwitchButton;
 
     // Timer values
-    private final long startTime = 10; // Starttimer 10 sec
+    private final long startTime = 5; // Starttimer 10 sec
     private long workoutTime = 0;
     private long restTime = 0;
     private int sets = 0;
@@ -158,25 +158,25 @@ public class MainActivity extends BaseActivity {
 
         switch(view.getId()) {
             case R.id.main_workout_interval_minus:
-                workoutTime = (workoutTime <= workoutMinTime) ? workoutMaxTime : workoutTime - 10;
+                workoutTime = (workoutTime <= workoutMinTime) ? workoutMaxTime : workoutTime - 5;
                 workoutIntervalText.setText(formatTime(workoutTime));
                 editor.putInt(this.getString(R.string.pref_timer_workout),(int) this.workoutTime);
                 editor.commit();
                 break;
             case R.id.main_workout_interval_plus:
-                this.workoutTime = (workoutTime >= workoutMaxTime) ? workoutMinTime : this.workoutTime + 10;
+                this.workoutTime = (workoutTime >= workoutMaxTime) ? workoutMinTime : this.workoutTime + 5;
                 this.workoutIntervalText.setText(formatTime(workoutTime));
                 editor.putInt(this.getString(R.string.pref_timer_workout),(int) this.workoutTime);
                 editor.commit();
                 break;
             case R.id.main_rest_interval_minus:
-                this.restTime = (restTime <= restMinTime) ? restMaxTime : this.restTime - 10;
+                this.restTime = (restTime <= restMinTime) ? restMaxTime : this.restTime - 5;
                 this.restIntervalText.setText(formatTime(restTime));
                 editor.putInt(this.getString(R.string.pref_timer_rest),(int) this.restTime);
                 editor.commit();
                 break;
             case R.id.main_rest_interval_plus:
-                this.restTime = (restTime >= restMaxTime) ? restMinTime : this.restTime + 10;
+                this.restTime = (restTime >= restMaxTime) ? restMinTime : this.restTime + 5;
                 this.restIntervalText.setText(formatTime(restTime));
                 editor.putInt(this.getString(R.string.pref_timer_rest),(int) this.restTime);
                 editor.commit();
@@ -285,7 +285,7 @@ public class MainActivity extends BaseActivity {
             public void onClick(View v) {
                 SharedPreferences.Editor editor = settings.edit();
 
-                if(blockPeriodizationTime < blockPeriodizationTimeMax){ blockPeriodizationTime += 10; }
+                if(blockPeriodizationTime < blockPeriodizationTimeMax){ blockPeriodizationTime += 5; }
                 timeText.setText(formatTime(blockPeriodizationTime));
                 editor.putInt(getString(R.string.pref_timer_periodization_time), (int) blockPeriodizationTime);
                 editor.commit();
@@ -297,7 +297,7 @@ public class MainActivity extends BaseActivity {
             public void onClick(View v) {
                 SharedPreferences.Editor editor = settings.edit();
 
-                if(blockPeriodizationTime > 10){ blockPeriodizationTime -= 10; }
+                if(blockPeriodizationTime > 10){ blockPeriodizationTime -= 5; }
                 timeText.setText(formatTime(blockPeriodizationTime));
                 editor.putInt(getString(R.string.pref_timer_periodization_time), (int) blockPeriodizationTime);
                 editor.commit();
